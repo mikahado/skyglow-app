@@ -1,3 +1,16 @@
  pipenv install; pipenv shell
 $ cd server
 $ flask db upgrade
+
+
+
+
+The World Geodetic System (WGS) is a standard used in cartography, geodesy, and satellite navigation including GPS. The current version, WGS 84, defines an Earth-centered, Earth-fixed coordinate system and a geodetic datum, and also describes the associated Earth Gravitational Model (EGM) and World Magnetic Model (WMM). The standard is published and maintained by the United States National Geospatial-Intelligence Agency.[1] (WIKIPEDIA)
+
+
+
+In astronomy and celestial navigation, an ephemeris (pl. ephemerides; from Latin ephemeris 'diary', and Greek ἐφημερίς (ephemeris) 'diary, journal')[1][2][3] is a book with tables that gives the trajectory of naturally occurring astronomical objects as well as artificial satellites in the sky, i.e., the position (and possibly velocity) over time. Historically, positions were given as printed tables of values, given at regular intervals of date and time. The calculation of these tables was one of the first applications of mechanical computers. Modern ephemerides are often provided in electronic form. However, printed ephemerides are still produced, as they are useful when computational devices are not available.
+
+The astronomical position calculated from an ephemeris is often given in the spherical polar coordinate system of right ascension and declination, together with the distance from the origin if applicable. Some of the astronomical phenomena of interest to astronomers are eclipses, apparent retrograde motion/planetary stations, planetary ingresses, sidereal time, positions for the mean and true nodes of the moon, the phases of the Moon, and the positions of minor celestial bodies such as Chiron.
+
+Ephemerides are used in celestial navigation and astronomy. They are also used by astrologers.[4] GPS signals include ephemeris data used to calculate the position of satellites in orbit.(WIKIPEDIA)
