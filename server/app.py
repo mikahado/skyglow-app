@@ -1,60 +1,33 @@
-#!/usr/bin/env python3
-
-from flask import Flask, jsonify, make_response
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, make_response, jsonify
+from flask_cors import CORS
 from flask_migrate import Migrate
 
-from models import db, User, Review, Game
+from models import db, Movie
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
 
+CORS(app)
 migrate = Migrate(app, db)
 
 db.init_app(app)
 
-@app.route('/')
-def index():
-    return "Index for Game/Review/User API"
+@app.route('/movies', methods=['GET'])
+def movies():
+    if request.method == 'GET':
+        movies = Movie.query.all()
 
-@app.route('/games')
-def games():
-
-    games = []
-    for game in Game.query.all():
-        game_dict = {
-            "title": game.title,
-            "genre": game.genre,
-            "platform": game.platform,
-            "price": game.price,
-        }
-        games.append(game_dict)
-
-    response = make_response(
-        games,
-        200,
-        {"Content-Type": "application/json"}
-    )
-
-@app.route('/games/<int:id>')
-def game_by_id(id):
-    game = Game.query.filter(Game.id == id).first()
+        return make_response(
+            jsonify([movie.to_dict() for movie in movies]),
+            200,
+        )
     
-    game_dict = {
-        "title": game.title,
-        "genre": game.genre,
-        "platform": game.platform,
-        "price": game.price,
-    }
-
-    response = make_response(
-        game_dict,
-        200
-    )
-
-    return response
+    return make_response(
+        jsonify({"text": "Method Not Allowed"}),
+        405,
+    ) 
 
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(port=5555)
