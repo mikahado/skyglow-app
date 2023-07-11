@@ -1,8 +1,10 @@
- pipenv install; pipenv shell
-$ cd server
-$ flask db upgrade
+ pipenv install
+ pipenv shell
+
+ flask db upgrade
 
 
+https://pypi.org/project/googlemaps/
 
 
 The World Geodetic System (WGS) is a standard used in cartography, geodesy, and satellite navigation including GPS. The current version, WGS 84, defines an Earth-centered, Earth-fixed coordinate system and a geodetic datum, and also describes the associated Earth Gravitational Model (EGM) and World Magnetic Model (WMM). The standard is published and maintained by the United States National Geospatial-Intelligence Agency.[1] (WIKIPEDIA)

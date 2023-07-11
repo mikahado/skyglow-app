@@ -41,11 +41,11 @@ for degree_range, direction in direction_mapping.items():
         cardinal_direction = direction
         break
 
+print("NYC DATA STRCUTURE:", nyc)
 print("astrometric", astrometric)
 print("altitude:", altitude)
 print("azimuth:", azimuth)
 print("degree:", degree)
-print(apparent)
 
 if is_sunlit:
     print("NYC is sunlit.")
