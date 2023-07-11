@@ -1,23 +1,21 @@
 from skyfield.api import load
 from skyfield.api import N, W, wgs84
-from skyfield.positionlib import Apparent
+# from skyfield.positionlib import Apparent
 
-# Create a timescale and ask the current time.
+# Creates a timescale and ask the current time.
 ts = load.timescale()
 t = ts.now()
 
-# Load the JPL ephemeris DE421 (covers 1900-2050).
+# Loads the JPL ephemeris DE421
 planets = load('de421.bsp')
 earth, sun = planets['earth'], planets['sun']
 
 nyc = earth + wgs84.latlon(40.7128 * N, 74.0060 * W, elevation_m=10.0)
 
-# position of Sun, viewed from Earth?
-# astrometric = earth.at(t).observe(sun)
-
 astrometric = nyc.at(t).observe(sun)
 
 apparent = astrometric.apparent()
+
 altitude, azimuth, degree = astrometric.apparent().altaz()
 
 is_sunlit = altitude.degrees > 0
@@ -41,18 +39,16 @@ for degree_range, direction in direction_mapping.items():
         cardinal_direction = direction
         break
 
-print("NYC DATA STRCUTURE:", nyc)
-print("astrometric", astrometric)
-print("altitude:", altitude)
-print("azimuth:", azimuth)
-print("degree:", degree)
+print("Observer data relative to Sun:", astrometric)
+print("Sun's Altitude from Observer:", altitude)
+print("Sun's Azimuth from Observer:", azimuth)
+print("Sun's Degree from Observer:", degree)
 
 if is_sunlit:
-    print("NYC is sunlit.")
+    print("The sun is up in NYC.")
 else:
-    print("NYC is not sunlit.")
+    print("The sun is down in NYC.")
 
-print("The direction of the Sun relative to north is:", sun_direction, "degrees.")
-print("The Sun is in the", cardinal_direction, "direction relative to north.")
+print("The sun is in the", cardinal_direction, "direction.")
 
-print("Azimuth:", azimuth.degrees)
+print("The direction of the sun relative to North is:", round(sun_direction),"deg.")
